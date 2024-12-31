@@ -6,8 +6,8 @@ const SplashScreen = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <Image 
-          source={require('../assets/Images/she.jpg')} 
-          style={styles.splash}
+          source={require('../assets/Images/s1.png')} 
+        
         />
       </View>
     </SafeAreaView>
@@ -21,9 +21,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: "#fffff"
   },
-  splash: {
-    resizeMode: 'contain',
-    flex: 1,
-  },
+
 });
