@@ -1,7 +1,10 @@
-import { StyleSheet, Text, View, Dimensions, FlatList, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, FlatList, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 const { width, height } = Dimensions.get('window');
+const COLORS = {
+    black: '#17223B',
+  };
 
 const slides = [
   {
@@ -13,13 +16,13 @@ const slides = [
   {
     id: '2',
     image: require('../assets/Images/s3.png'),
-    title: 'Fast Delivery',
+    title: 'Make Payment',
     subtitle: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
   },
   {
     id: '3',
     image: require('../assets/Images/s4.png'),
-    title: 'Enjoy Shopping',
+    title: 'Get Your Order',
     subtitle: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
   },
 ];
@@ -46,16 +49,51 @@ const Slide = ({ item }) => {
 };
 
 const OnboardingScreen = ({ navigation }) => {
+    const [currentSlideIndex, setCurentSlideIndex] = React.useState(0);
+    const Footer =() =>{
+        return  <View style={{
+                position: 'absolute', // Fixes the Footer at the bottom
+                bottom: 0, // Aligns the Footer to the bottom of the screen
+                width: '100%',
+                height: height * 0.1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingHorizontal: 30, 
+            }}>
+
+                <View style={styles.row}>
+                    <View style={styles.indicatorsContainer}>
+                      {slides.map((_,index)=>(
+                          <View key={index} style={[styles.indicator,
+                            currentSlideIndex ==index && {
+                                backgroundColor: COLORS.black,
+                                width: 30,
+                            }
+                        ]}/>
+                      ))}
+                    </View>
+                     {/* Prev */}<TouchableOpacity style={styles.btn}>
+                         
+                         <Text style={styles.next}>Next</Text>
+                     </TouchableOpacity>
+                </View>
+               
+            
+        </View>
+        
+    }
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+      pagingEnabled
         data={slides}
         horizontal
-        pagingEnabled
+        
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => <Slide item={item} />}
         keyExtractor={(item) => item.id}
       />
+      <Footer/>
     </SafeAreaView>
   );
 };
@@ -73,10 +111,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  next: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#F83758', // Next button color
+    textAlign: 'right', 
+    marginTop: 25
+  },
   image: {
     width: width * 0.8,
     height: height * 0.5,
     resizeMode: 'contain',
+    marginTop: 30,
+    
+
   },
   title: {
     fontSize: 24,
@@ -95,7 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', // Align items in a row
     justifyContent: 'space-between', // Space between 1/3 and Skip
     alignItems: 'center', // Align items vertically
-    paddingHorizontal: 20, // Adds horizontal padding for spacing
+    paddingHorizontal: 30, // Adds horizontal padding for spacing
     paddingTop: 50, // Pushes the rowContainer down slightly
   },
   num: {
@@ -105,4 +153,23 @@ const styles = StyleSheet.create({
   highlight: {
     color: '#A0A0A1', // Custom color for 3
   },
+  indicator:{
+    height:10,
+    width:10,
+    marginHorizontal: 3,
+    backgroundColor: 'grey',
+    borderRadius: 10,
+    marginTop: 30
+  },
+  row: {
+    flexDirection: 'row', // Arrange items in a row
+    alignItems: 'center', // Vertically align items
+    justifyContent: 'space-between', // Space between indicators and Next
+  },
+  indicatorsContainer:{
+    flexDirection: 'row', // Arrange indicators in a row
+    justifyContent: 'center', // Center indicators
+    flex: 2, 
+  }
+
 });
