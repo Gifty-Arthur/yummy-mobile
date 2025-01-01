@@ -114,8 +114,10 @@ const OnboardingScreen = ({ navigation }) => {
         const nextSlideIndex = currentSlideIndex +1;
         if( nextSlideIndex != slides.length){
             const offset = nextSlideIndex * width;
-        ref?.current.scrollToOffset({offset});
+        ref?.current.scrollToOffset({offset, animated:true});
         setCurentSlideIndex(nextSlideIndex);
+        } else{
+            navigation.navigate('GetStarted');
         }
         
     };
