@@ -27,7 +27,7 @@ const slides = [
   },
 ];
 
-const Slide = ({ item }) => {
+const Slide = ({ item,skip }) => {
   return (
 
 <View style={styles.container}>
@@ -36,7 +36,9 @@ const Slide = ({ item }) => {
         1/
         <Text style={styles.highlight}>3</Text>
       </Text>
-      <Text style={styles.skip}>Skip</Text>
+      <TouchableOpacity onPress={skip}>
+          <Text style={styles.skip}>Skip</Text>
+        </TouchableOpacity>
     </View>
 
     <View style={styles.slideContainer}>
@@ -50,6 +52,15 @@ const Slide = ({ item }) => {
 
 const OnboardingScreen = ({ navigation }) => {
     const [currentSlideIndex, setCurentSlideIndex] = React.useState(0);
+    const ref = React.useRef(null);
+
+    const skip = () => {
+        const lastSlideIndex = slides.length - 1;
+        const offset = lastSlideIndex * width;
+        ref?.current.scrollToOffset({ offset });
+        setCurentSlideIndex(lastSlideIndex);
+      };
+
     const Footer =() =>{
         return  <View style={{
                 position: 'absolute', // Fixes the Footer at the bottom
@@ -62,6 +73,18 @@ const OnboardingScreen = ({ navigation }) => {
             }}>
 
                 <View style={styles.row}>
+                
+                     {/* Prev */}<TouchableOpacity style={styles.btn} onPress={goPrevSlide}>
+                         
+                         <Text style={{
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            color: '#C4C4C4', // Next button color
+                            textAlign: 'right', 
+                            marginTop: 25
+                         }}>Prev</Text>
+                     </TouchableOpacity>
+                
                     <View style={styles.indicatorsContainer}>
                       {slides.map((_,index)=>(
                           <View key={index} style={[styles.indicator,
@@ -72,7 +95,7 @@ const OnboardingScreen = ({ navigation }) => {
                         ]}/>
                       ))}
                     </View>
-                     {/* Prev */}<TouchableOpacity style={styles.btn}>
+                     {/* Prev */}<TouchableOpacity style={styles.btn} onPress={goNextSlide}>
                          
                          <Text style={styles.next}>Next</Text>
                      </TouchableOpacity>
@@ -81,16 +104,44 @@ const OnboardingScreen = ({ navigation }) => {
             
         </View>
         
-    }
+    };
+    const updateCurrentSlideIndex = e =>{
+        const contentOffsetX = e. nativeEvent.contentOffset.x;
+        const currentIndex = Math.round(contentOffsetX / width);
+        setCurentSlideIndex(currentIndex)
+    };
+    const goNextSlide =()=> {
+        const nextSlideIndex = currentSlideIndex +1;
+        if( nextSlideIndex != slides.length){
+            const offset = nextSlideIndex * width;
+        ref?.current.scrollToOffset({offset});
+        setCurentSlideIndex(nextSlideIndex);
+        }
+        
+    };
+    const goPrevSlide =()=> {
+        const prevSlideIndex = currentSlideIndex -1;
+        if( prevSlideIndex != slides.length){
+            const offset = prevSlideIndex * width;
+        ref?.current.scrollToOffset({offset});
+        setCurentSlideIndex(prevSlideIndex);
+        }
+        
+    };
+ 
+   
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+      ref={ref}
+      onMomentumScrollEnd={updateCurrentSlideIndex}
       pagingEnabled
         data={slides}
         horizontal
         
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => <Slide item={item} />}
+        renderItem={({ item }) => <Slide item={item} skip={skip} />}
         keyExtractor={(item) => item.id}
       />
       <Footer/>
