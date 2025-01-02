@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-
+import FontAwesome from '@expo/vector-icons/FontAwesome'; 
+import AntDesign from '@expo/vector-icons/AntDesign';// For the Google Icon
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -24,57 +23,91 @@ const SignUp = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Create an {'\n'} account</Text>
 
-      <View styles={styles.inputContainer}>
-      <FontAwesome name="user" size={20} color="#626262" style={styles.inputIcon} />
+      <View style={styles.inputContainer}>
+        <FontAwesome name="user" size={20} color="#626262" style={styles.inputIcon} />
         <TextInput
           style={styles.input}
           placeholder="username or Email"
-          
           placeholderTextColor="#888"
           value={name}
           onChangeText={text => setName(text)}
-        
         />
-        
       </View>
-
 
       <View style={styles.iconPass}>
         <View style={styles.inputContainer}>
-        <FontAwesome name="lock" size={20} color="#626262"   style={styles.inputIcon}  />
+          <FontAwesome name="lock" size={20} color="#626262" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Password"
-        
             placeholderTextColor="#888"
             secureTextEntry={true}
             value={password}
             onChangeText={text => setPassword(text)}
           />
         </View>
-        {/* <FontAwesome6 name="eye" size={20} color="#626262"   style={styles.PIcon}   /> */}
       </View>
+
       <View style={styles.iconPass}>
         <View style={styles.inputContainer}>
-        <FontAwesome name="lock" size={20} color="#626262"   style={styles.inputIcon}  />
+          <FontAwesome name="lock" size={20} color="#626262" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Confirm Password"
-        
             placeholderTextColor="#888"
             secureTextEntry={true}
             value={password}
             onChangeText={text => setPassword(text)}
           />
         </View>
-        {/* <FontAwesome6 name="eye" size={20} color="#626262"   style={styles.PIcon}   /> */}
       </View>
-     
-     <Text>By clicking the Register button, you agree{'\n'} to the public offer</Text>
+
+      <Text
+        style={{
+          color: '#676767',
+          marginTop: 10,
+          fontSize: 12,
+        }}
+      >
+        By clicking the <Text style={{ color: '#FF4B26' }}>Register</Text> button, you agree{'\n'} to the public offer
+      </Text>
 
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Create an Account</Text>
       </TouchableOpacity>
+
+      <Text
+        style={{
+          color: '#575757',
+          textAlign: 'center',
+          marginTop: 15,
+          fontSize: 12,
+        }}
+      >
+        -OR Continue with-
+      </Text>
+
+      {/* Rounded Google Button */}
+      <View style={styles.rowContainer}>
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+          <FontAwesome name="google" size={24}      style={{
+      color: '#4285F4', // Google's blue color
+      textShadowColor: 'rgba(234, 67, 53, 0.8)', // Google's red color shadow
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 5,
+    }}
+ />
+        </TouchableOpacity>
+
+        {/* apple */}
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+        <AntDesign name="apple1" size={24} color="black" />
+        </TouchableOpacity>
+        {/* facebook */}
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+          <FontAwesome name="facebook" size={24} color="#4285F4" />
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.loginText}>
         Already have an account? <Text style={styles.linkText}>Log In</Text>
@@ -89,7 +122,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    
     padding: 20,
   },
   title: {
@@ -109,7 +141,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 30,
     borderBottomWidth: 1,
-    
   },
   button: {
     backgroundColor: '#F83758',
@@ -118,17 +149,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     width: '100%',
-    marginTop: 40
+    marginTop: 40,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   loginText: {
     marginTop: 20,
     fontSize: 14,
     color: '#888',
+    textAlign: 'center',
   },
   linkText: {
     color: '#F83758',
@@ -136,22 +168,34 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row', // Align items in a row
-    
-    
-   
   },
-  inputIcon:{
+  inputIcon: {
     marginTop: 55,
     position: 'absolute',
-    paddingLeft: 10
-  }, 
-  iconPass:{
-    flexDirection: 'row',
-    
+    paddingLeft: 10,
   },
-  PIcon:{
-    justifyContent: 'space-between',
-    marginRight: 15,
-    marginTop: 65
+  iconPass: {
+    flexDirection: 'row',
+  },
+  googleButton: {
+    height: 50,
+    width: 50,
+    borderRadius: 25, // Fully rounded
+    borderWidth: 2,
+    borderColor: '#F83758',
+    justifyContent: 'center', // Center content vertically
+    alignItems: 'center', // Center content horizontally
+    alignSelf: 'center', // Align the button at the center of the screen
+    marginTop: 20, // Add space above the button
+    marginHorizontal: 8
+  },
+  rowContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+
+
+
   }
 });
