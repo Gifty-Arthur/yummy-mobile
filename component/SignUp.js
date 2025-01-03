@@ -1,22 +1,22 @@
+
+
+
+
+
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome'; 
 import AntDesign from '@expo/vector-icons/AntDesign';// For the Google Icon
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignUp = () => {
-    // Basic validation
-    if (!name || !email || !password) {
-      Alert.alert('Error', 'Please fill all the fields');
-      return;
-    }
+  
 
-    // Handle sign-up logic here
-    Alert.alert('Success', `Welcome, ${name}!`);
+    
   };
 
   return (
@@ -72,7 +72,7 @@ const SignUp = () => {
         By clicking the <Text style={{ color: '#FF4B26' }}>Register</Text> button, you agree{'\n'} to the public offer
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('SignIn')}>
         <Text style={styles.buttonText}>Create an Account</Text>
       </TouchableOpacity>
 

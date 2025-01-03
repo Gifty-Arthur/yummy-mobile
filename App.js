@@ -8,6 +8,13 @@ import HomeScreen from './screens/HomeScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import GetStarted from './component/GetStarted';
 import SignUp from './component/SignUp';
+import SignIn from './component/SignIn'
+
+
+
+
+
+
 
 const Stack = createStackNavigator();
 
@@ -34,6 +41,7 @@ export default function App() {
         <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
         <Stack.Screen name="GetStarted" component={GetStarted} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignIn" component={SignIn} />
 
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
