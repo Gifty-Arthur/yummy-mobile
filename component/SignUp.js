@@ -1,65 +1,62 @@
-
-
-
-
-
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-import FontAwesome from '@expo/vector-icons/FontAwesome'; 
-import AntDesign from '@expo/vector-icons/AntDesign';// For the Google Icon
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
-const SignUp = ({navigation}) => {
-  const [name, setName] = useState('');
+const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignUp = () => {
-  
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
 
-    
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      Alert.alert('Success', 'Account created successfully!');
+      navigation.navigate('HomeScreen'); // Navigate to the SignIn page
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create an {'\n'} account</Text>
+      <Text style={styles.title}>Create an {'\n'} Account</Text>
 
       <View style={styles.inputContainer}>
-        <FontAwesome name="user" size={20} color="#626262" style={styles.inputIcon} />
         <TextInput
           style={styles.input}
-          placeholder="username or Email"
+          placeholder="Email"
           placeholderTextColor="#888"
-          value={name}
-          onChangeText={text => setName(text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
-      <View style={styles.iconPass}>
-        <View style={styles.inputContainer}>
-          <FontAwesome name="lock" size={20} color="#626262" style={styles.inputIcon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="#888"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={text => setPassword(text)}
-          />
-        </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#888"
+          secureTextEntry={true}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+        />
       </View>
 
-      <View style={styles.iconPass}>
-        <View style={styles.inputContainer}>
-          <FontAwesome name="lock" size={20} color="#626262" style={styles.inputIcon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            placeholderTextColor="#888"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={text => setPassword(text)}
-          />
-        </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          placeholderTextColor="#888"
+          secureTextEntry={true}
+          value={confirmPassword}
+          onChangeText={(text) => setConfirmPassword(text)}
+        />
       </View>
 
       <Text
@@ -69,10 +66,10 @@ const SignUp = ({navigation}) => {
           fontSize: 12,
         }}
       >
-        By clicking the <Text style={{ color: '#FF4B26' }}>Register</Text> button, you agree{'\n'} to the public offer
+        By clicking the <Text style={{ color: '#FF4B26' }}>Register</Text> button, you agree{'\n'} to the public offer.
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('SignIn')}>
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Create an Account</Text>
       </TouchableOpacity>
 
@@ -87,30 +84,15 @@ const SignUp = ({navigation}) => {
         -OR Continue with-
       </Text>
 
-      {/* Rounded Google Button */}
       <View style={styles.rowContainer}>
-        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
-          <FontAwesome name="google" size={24}      style={{
-      color: '#4285F4', // Google's blue color
-      textShadowColor: 'rgba(234, 67, 53, 0.8)', // Google's red color shadow
-      textShadowOffset: { width: -1, height: 1 },
-      textShadowRadius: 5,
-    }}
- />
-        </TouchableOpacity>
-
-        {/* apple */}
-        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
-        <AntDesign name="apple1" size={24} color="black" />
-        </TouchableOpacity>
-        {/* facebook */}
-        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
-          <FontAwesome name="facebook" size={24} color="#4285F4" />
-        </TouchableOpacity>
+        {/* Social Login Buttons */}
       </View>
 
       <Text style={styles.loginText}>
-        Already have an account? <Text style={styles.linkText}>Log In</Text>
+        Already have an account?{' '}
+        <Text style={styles.linkText} onPress={() => navigation.navigate('SignIn')}>
+          Log In
+        </Text>
       </Text>
     </View>
   );
@@ -118,6 +100,7 @@ const SignUp = ({navigation}) => {
 
 export default SignUp;
 
+// Styles remain the same
 const styles = StyleSheet.create({
   container: {
     flex: 1,
