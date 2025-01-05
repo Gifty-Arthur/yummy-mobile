@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { StyleSheet, View, Image, Text, DrawerLayoutAndroid, TouchableOpacity } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
+import { TextInput } from 'react-native-gesture-handler';
 
 const HomeScreen = () => {
   const drawer = useRef(null);
@@ -10,8 +11,9 @@ const HomeScreen = () => {
       <View style={styles.menuItems}>
         <Text style={styles.sidebarTitle}>Menu</Text>
         <Text style={styles.sidebarItem}>Home</Text>
+        <Text style={styles.sidebarItem}>Trending Product</Text>
+        <Text style={styles.sidebarItem}>Shop page</Text>
         <Text style={styles.sidebarItem}>Profile</Text>
-        <Text style={styles.sidebarItem}>Settings</Text>
       </View>
       <View style={styles.logoutContainer}>
         <TouchableOpacity style={styles.logoutButton}>
@@ -34,9 +36,18 @@ const HomeScreen = () => {
             <Entypo name="menu" size={24} color="black" />
           </TouchableOpacity>
           <Image source={require('../assets/Images/s11.png')} />
-          <Image source={require('../assets/Images/h1.png')} />
+          <View>
+            <Image source={require('../assets/Images/h1.png')} />
+          </View>
         </View>
-        <Text style={styles.content}>Welcome to the Home Screen!</Text>
+      <View style={styles.searchbar}>
+        <Entypo name= "magnifying-glass" size={20} color='gray' style={{marginRight: 10}} />
+        <TextInput
+        style={styles.input}
+        placeholder='Search'
+        placeholderTextColor='gray'
+         />
+      </View>
       </View>
     </DrawerLayoutAndroid>
   );
@@ -71,6 +82,7 @@ const styles = StyleSheet.create({
   },
   menuItems: {
     flex: 1,
+    
   },
   sidebarTitle: {
     fontSize: 28,
@@ -81,9 +93,10 @@ const styles = StyleSheet.create({
   },
   sidebarItem: {
     fontSize: 18,
-    marginBottom: 25,
+    marginBottom: 10,
     paddingVertical: 10,
-    color: '#fff'
+    color: '#fff',
+    
   },
   logoutContainer: {
     justifyContent: 'flex-end',
@@ -91,8 +104,26 @@ const styles = StyleSheet.create({
  
    
   logoutText: {
-    color: '#fff',
+    color: 'black',
     fontSize: 24,
     fontWeight: 'bold',
   },
+  searchbar:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    shadowOpacity: 2,
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    height: 40,
+    marginVertical: 10,
+    marginHorizontal: 15
+    
+
+  },
+  imput:{
+    flex:1,
+    fontSize: 16,
+    color: 'black'
+  }
 });
