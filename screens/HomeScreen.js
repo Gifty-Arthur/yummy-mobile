@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { StyleSheet, View, Image, Text, DrawerLayoutAndroid, TouchableOpacity } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
+import Off from '../component/Off';
 
 const HomeScreen = () => {
   const drawer = useRef(null);
@@ -84,7 +85,7 @@ const HomeScreen = () => {
         </View>
        
         </View>
-        
+        <Off/>
         </View>
     </DrawerLayoutAndroid>
   );
