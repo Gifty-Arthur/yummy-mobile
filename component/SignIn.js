@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import FontAwesome from '@expo/vector-icons/FontAwesome'; 
+import AntDesign from '@expo/vector-icons/AntDesign';// For the Google Icon
  import { auth } from '../firebase';
 
 const SignIn = ({ navigation }) => {
@@ -11,7 +13,7 @@ const SignIn = ({ navigation }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       Alert.alert('Login Successful');
-      navigation.navigate('Home'); // Adjust to your home screen
+      navigation.navigate('HomeScreen'); // Adjust to your home screen
     } catch (error) {
       Alert.alert('Login Failed', error.message);
     }
@@ -22,7 +24,9 @@ const SignIn = ({ navigation }) => {
       <Text style={styles.title}>Welcome{'\n'} Back!</Text>
 
       <View style={styles.inputWrapper}>
+        
         <View style={styles.inputContainer}>
+        <FontAwesome name="user" size={20} color="#626262" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Email"
@@ -32,6 +36,7 @@ const SignIn = ({ navigation }) => {
           />
         </View>
         <View style={styles.inputContainer}>
+        <FontAwesome name="lock" size={20} color="#626262" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Password"
@@ -57,6 +62,52 @@ const SignIn = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+
+      <Text
+        style={{
+          color: '#575757',
+          textAlign: 'center',
+          marginTop: 15,
+          fontSize: 12,
+        }}
+      >
+        -OR Continue with-
+      </Text>
+      <View style={styles.rowContainer}>
+        {/* Social Login Buttons */}
+        <View style={styles.iconPass}>
+       
+      </View>
+
+
+      {/* Rounded Google Button */}
+      <View style={styles.rowContainer}>
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+          <FontAwesome name="google" size={24}      style={{
+      color: '#4285F4', // Google's blue color
+      textShadowColor: 'rgba(234, 67, 53, 0.8)', // Google's red color shadow
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 5,
+    }}
+ />
+        </TouchableOpacity>
+
+        {/* apple */}
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+        <AntDesign name="apple1" size={24} color="black" />
+        </TouchableOpacity>
+        {/* facebook */}
+        <TouchableOpacity style={styles.googleButton} onPress={() => Alert.alert('Google Sign-In')}>
+          <FontAwesome name="facebook" size={24} color="#4285F4" />
+        </TouchableOpacity>
+      </View>
+      </View>
+       <Text style={styles.loginText}>
+                Create An Account{' '}
+                <Text style={styles.linkText} onPress={() => navigation.navigate('SignUp')}>
+                  Sign Up
+                </Text>
+              </Text>
     </View>
   );
 };

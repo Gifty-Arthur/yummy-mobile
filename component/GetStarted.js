@@ -14,7 +14,7 @@ const GetStarted = ({navigation}) => {
               <Text style={styles.text}>You want{'\n'} Authentic, here {'\n'} you go!</Text>
               <Text style={styles.textsm}>Find it here, buy it now</Text>
               
-                <TouchableOpacity style={styles.btn} onPress={()=> navigation.navigate('SignUp')}> 
+                <TouchableOpacity style={styles.btn} onPress={()=> navigation.navigate('HomeScreen')}> 
                     <Text style={styles.buttonText}>Get Started</Text>
                 </TouchableOpacity>
               
