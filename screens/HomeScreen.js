@@ -40,15 +40,52 @@ const HomeScreen = () => {
             <Image source={require('../assets/Images/h1.png')} />
           </View>
         </View>
-      <View style={styles.searchbar}>
+        {/* search */}
+        <View style={styles.searchbar}>
         <Entypo name= "magnifying-glass" size={20} color='gray' style={{marginRight: 10}} />
         <TextInput
         style={styles.input}
         placeholder='Search'
         placeholderTextColor='gray'
          />
-      </View>
-      </View>
+        </View>
+
+       {/* all feasture */}
+       <View style={styles.feature}>
+        <Text style={{
+          color: '#000',
+          fontWeight: 'bold',
+          fontSize: 18
+        }}>All Featured</Text>
+
+        {/* sort */}
+        <View style={{
+         flexDirection: 'row',
+         marginLeft: 10,
+         justifyContent: 'space-between', // Distributes space between the children
+         width: 150
+          
+         }}>
+          <View style={{
+            borderRadius: 6,
+            backgroundColor: '#fff',
+              width: 61,
+              height: 24,
+              
+          }}><Text style={{textAlign :'center'}}>Sort</Text></View>
+          {/* filter */}
+          <View style={{
+            borderRadius: 6,
+            backgroundColor: '#fff',
+              width: 61,
+              height: 24
+          }}><Text style={{textAlign: 'center', }}>Filter</Text>
+          </View>
+        </View>
+       
+        </View>
+        
+        </View>
     </DrawerLayoutAndroid>
   );
 };
@@ -66,6 +103,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
     paddingVertical: 30,
     paddingHorizontal: 10,
+  },
+
+  feature:{
+    
+flexDirection: 'row',
+alignItems: 'center',
+justifyContent: 'space-between',
+padding: 20
   },
   content: {
     marginTop: 20,
@@ -121,7 +166,7 @@ const styles = StyleSheet.create({
     
 
   },
-  imput:{
+  input:{
     flex:1,
     fontSize: 16,
     color: 'black'
