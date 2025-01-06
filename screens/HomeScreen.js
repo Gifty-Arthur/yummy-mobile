@@ -1,5 +1,10 @@
+
+
+
+
 import React, { useRef } from 'react';
-import { StyleSheet, View, Image, Text, DrawerLayoutAndroid, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text,  TouchableOpacity } from 'react-native';
+import { DrawerLayout } from 'react-native-gesture-handler';
 import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
 import Off from '../component/Off';
@@ -25,7 +30,7 @@ const HomeScreen = () => {
   );
 
   return (
-    <DrawerLayoutAndroid
+    <DrawerLayout
       ref={drawer}
       drawerWidth={250}
       drawerPosition="left"
@@ -87,7 +92,11 @@ const HomeScreen = () => {
         </View>
         <Off/>
         </View>
-    </DrawerLayoutAndroid>
+
+
+      
+       
+    </DrawerLayout>
   );
 };
 
@@ -96,6 +105,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column'
+    
   },
   rowheader: {
     flexDirection: 'row',
@@ -104,6 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     paddingVertical: 30,
     paddingHorizontal: 10,
+    
   },
 
   feature:{
@@ -120,11 +132,12 @@ padding: 20
   },
   sidebar: {
     flex: 1,
-    backgroundColor: '#4392F9',
+    backgroundColor: '#fff',
     padding: 20,
     justifyContent:'space-between',
     paddingVertical: 30 ,
-    marginTop: 30 // Ensures items are spaced correctly
+    marginTop: 30 ,
+    borderRadius: 7,// Ensures items are spaced correctly
   },
   menuItems: {
     flex: 1,
@@ -134,14 +147,14 @@ padding: 20
     fontSize: 28,
     marginTop: 20,
     fontWeight: 'bold',
-    marginBottom: 70,
-    color: '#fff'
+    marginBottom: 30,
+    color: '#000'
   },
   sidebarItem: {
     fontSize: 18,
     marginBottom: 10,
     paddingVertical: 10,
-    color: '#fff',
+    color: '#000',
     
   },
   logoutContainer: {
@@ -150,7 +163,7 @@ padding: 20
  
    
   logoutText: {
-    color: 'black',
+    color: 'red',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -158,7 +171,7 @@ padding: 20
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    shadowOpacity: 2,
+    
     borderRadius: 6,
     paddingHorizontal: 10,
     height: 40,
