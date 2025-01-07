@@ -3,7 +3,7 @@
 
 
 import React, { useRef } from 'react';
-import { StyleSheet, View, Image, Text,  TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text,  TouchableOpacity, ScrollView} from 'react-native';
 import { DrawerLayout } from 'react-native-gesture-handler';
 import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
@@ -37,60 +37,60 @@ const HomeScreen = () => {
       renderNavigationView={navigationView}
     >
       <View style={styles.container}>
-        <View style={styles.rowheader}>
-          <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
-            <Entypo name="menu" size={24} color="black" />
-          </TouchableOpacity>
-          <Image source={require('../assets/Images/s11.png')} />
-          <View>
-            <Image source={require('../assets/Images/h1.png')} />
+        <ScrollView  contentContainerStyle={{paddingBottom: 20, flexGrow: 1}}>
+          <View style={styles.rowheader}>
+            <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
+              <Entypo name="menu" size={24} color="black" />
+            </TouchableOpacity>
+            <Image source={require('../assets/Images/s11.png')} />
+            <View>
+              <Image source={require('../assets/Images/h1.png')} />
+            </View>
           </View>
-        </View>
-        {/* search */}
-        <View style={styles.searchbar}>
-        <Entypo name= "magnifying-glass" size={20} color='gray' style={{marginRight: 10}} />
-        <TextInput
-        style={styles.input}
-        placeholder='Search'
-        placeholderTextColor='gray'
-         />
-        </View>
-
-       {/* all feasture */}
-       <View style={styles.feature}>
-        <Text style={{
-          color: '#000',
-          fontWeight: 'bold',
-          fontSize: 18
-        }}>All Featured</Text>
-
-        {/* sort */}
-        <View style={{
-         flexDirection: 'row',
-         marginLeft: 10,
-         justifyContent: 'space-between', // Distributes space between the children
-         width: 150
+          {/* search */}
+          <View style={styles.searchbar}>
+          <Entypo name= "magnifying-glass" size={20} color='gray' style={{marginRight: 10}} />
+          <TextInput
+          style={styles.input}
+          placeholder='Search'
+          placeholderTextColor='gray'
+           />
+          </View>
           
-         }}>
+                 {/* all feasture */}
+                 <View style={styles.feature}>
+          <Text style={{
+            color: '#000',
+            fontWeight: 'bold',
+            fontSize: 18
+          }}>All Featured</Text>
+          {/* sort */}
           <View style={{
-            borderRadius: 6,
-            backgroundColor: '#fff',
-              width: 61,
-              height: 24,
-              
-          }}><Text style={{textAlign :'center'}}>Sort</Text></View>
-          {/* filter */}
-          <View style={{
-            borderRadius: 6,
-            backgroundColor: '#fff',
-              width: 61,
-              height: 24
-          }}><Text style={{textAlign: 'center', }}>Filter</Text>
+           flexDirection: 'row',
+           marginLeft: 10,
+           justifyContent: 'space-between', // Distributes space between the children
+           width: 150
+          
+           }}>
+            <View style={{
+              borderRadius: 6,
+              backgroundColor: '#fff',
+                width: 61,
+                height: 24,
+          
+            }}><Text style={{textAlign :'center'}}>Sort</Text></View>
+            {/* filter */}
+            <View style={{
+              borderRadius: 6,
+              backgroundColor: '#fff',
+                width: 61,
+                height: 24
+            }}><Text style={{textAlign: 'center', }}>Filter</Text>
+            </View>
           </View>
-        </View>
-       
-        </View>
-        <Off/>
+          </View>
+          <Off/>
+        </ScrollView>
         </View>
 
 
