@@ -1,9 +1,5 @@
-
-
-
-
 import React, { useRef } from 'react';
-import { StyleSheet, View, Image, Text,  TouchableOpacity, ScrollView} from 'react-native';
+import { StyleSheet, View, Image, Text, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { DrawerLayout } from 'react-native-gesture-handler';
 import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
@@ -36,8 +32,8 @@ const HomeScreen = () => {
       drawerPosition="left"
       renderNavigationView={navigationView}
     >
-      <View style={styles.container}>
-        <ScrollView  contentContainerStyle={{paddingBottom: 20, flexGrow: 1}}>
+      <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
+        <View style={styles.container}>
           <View style={styles.rowheader}>
             <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
               <Entypo name="menu" size={24} color="black" />
@@ -49,53 +45,30 @@ const HomeScreen = () => {
           </View>
           {/* search */}
           <View style={styles.searchbar}>
-          <Entypo name= "magnifying-glass" size={20} color='gray' style={{marginRight: 10}} />
-          <TextInput
-          style={styles.input}
-          placeholder='Search'
-          placeholderTextColor='gray'
-           />
+            <Entypo name="magnifying-glass" size={20} color="gray" style={{ marginRight: 10 }} />
+            <TextInput
+              style={styles.input}
+              placeholder='Search'
+              placeholderTextColor='gray'
+            />
           </View>
-          
-                 {/* all feasture */}
-                 <View style={styles.feature}>
-          <Text style={{
-            color: '#000',
-            fontWeight: 'bold',
-            fontSize: 18
-          }}>All Featured</Text>
-          {/* sort */}
-          <View style={{
-           flexDirection: 'row',
-           marginLeft: 10,
-           justifyContent: 'space-between', // Distributes space between the children
-           width: 150
-          
-           }}>
-            <View style={{
-              borderRadius: 6,
-              backgroundColor: '#fff',
-                width: 61,
-                height: 24,
-          
-            }}><Text style={{textAlign :'center'}}>Sort</Text></View>
-            {/* filter */}
-            <View style={{
-              borderRadius: 6,
-              backgroundColor: '#fff',
-                width: 61,
-                height: 24
-            }}><Text style={{textAlign: 'center', }}>Filter</Text>
+          {/* all feature */}
+          <View style={styles.feature}>
+            <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 18 }}>All Featured</Text>
+            {/* sort */}
+            <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'space-between', width: 150 }}>
+              <View style={{ borderRadius: 6, backgroundColor: '#fff', width: 61, height: 24 }}>
+                <Text style={{ textAlign: 'center' }}>Sort</Text>
+              </View>
+              {/* filter */}
+              <View style={{ borderRadius: 6, backgroundColor: '#fff', width: 61, height: 24 }}>
+                <Text style={{ textAlign: 'center' }}>Filter</Text>
+              </View>
             </View>
           </View>
-          </View>
-          <Off/>
-        </ScrollView>
+          <Off />
         </View>
-
-
-      
-       
+      </ScrollView>
     </DrawerLayout>
   );
 };
@@ -105,8 +78,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
-    
+    flexDirection: 'column',
+    paddingTop: StatusBar.currentHeight,
   },
   rowheader: {
     flexDirection: 'row',
@@ -115,15 +88,12 @@ const styles = StyleSheet.create({
     marginTop: 40,
     paddingVertical: 30,
     paddingHorizontal: 10,
-    
   },
-
-  feature:{
-    
-flexDirection: 'row',
-alignItems: 'center',
-justifyContent: 'space-between',
-padding: 20
+  feature: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
   },
   content: {
     marginTop: 20,
@@ -134,55 +104,48 @@ padding: 20
     flex: 1,
     backgroundColor: '#fff',
     padding: 20,
-    justifyContent:'space-between',
-    paddingVertical: 30 ,
-    marginTop: 30 ,
-    borderRadius: 7,// Ensures items are spaced correctly
+    justifyContent: 'space-between',
+    paddingVertical: 30,
+    marginTop: 30,
+    borderRadius: 7,
   },
   menuItems: {
     flex: 1,
-    
   },
   sidebarTitle: {
     fontSize: 28,
     marginTop: 20,
     fontWeight: 'bold',
     marginBottom: 30,
-    color: '#000'
+    color: '#000',
   },
   sidebarItem: {
     fontSize: 18,
     marginBottom: 10,
     paddingVertical: 10,
     color: '#000',
-    
   },
   logoutContainer: {
     justifyContent: 'flex-end',
   },
- 
-   
   logoutText: {
     color: 'red',
     fontSize: 24,
     fontWeight: 'bold',
   },
-  searchbar:{
+  searchbar: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    
     borderRadius: 6,
     paddingHorizontal: 10,
     height: 40,
     marginVertical: 10,
-    marginHorizontal: 15
-    
-
+    marginHorizontal: 15,
   },
-  input:{
-    flex:1,
+  input: {
+    flex: 1,
     fontSize: 16,
-    color: 'black'
-  }
+    color: 'black',
+  },
 });

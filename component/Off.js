@@ -134,32 +134,69 @@ const Off = () => {
 
 
           {/* data.js */}
-          {dresses.map((dress) => (
-        <View key={dress.id} style={styles.card}>
-          <Image source={dress.image} style={styles.image} />
-          <View style={styles.cardContent}>
-            <Text style={styles.title}>{dress.title}</Text>
-            <Text style={styles.subtitle}>{dress.subtitle}</Text>
-            <Text style={styles.price}>${dress.price}</Text>
-            <Text style={styles.rate}>{dress.rate}</Text>
+          
+        <View  style={{  flexDirection: 'row',
+       alignContent: 'center',
+       justifyContent: 'space-between',
+       padding: 10}}>
+           <View>
+             <Image source={require('../assets/Images/d1.png')} />
+             <Text style={styles.imagetext}>Women Printed Kurta</Text>
+             <Text style={{fontSize: 10, fontWeight: 'regular'}}>Neque porro quisquam est qui {'\n'}dolorem ipsum quia</Text>
+             <Text style={{fontSize: 12, fontWeight: 'medium'}}>$1500</Text>
+
+             <Text>⭐️⭐️⭐️⭐️⭐️</Text>
+           </View>
+           <View >
+             <Image source={require('../assets/Images/d2.png')} />
+               <Text style={styles.imagetext}>HRX by Hrithik Roshan</Text>
+               <Text style={{fontSize: 10, fontWeight: 'regular'}}>Neque porro quisquam est qui {'\n'}dolorem ipsum quia</Text>
+               <Text style={{fontSize: 12, fontWeight: 'medium'}}>$2499</Text>
+               <Text>⭐️⭐️⭐️⭐️⭐️</Text>
+           </View>
+
+        
+        </View>
+
+        {/* special offer */}
+        <View style={styles.specialflex}>
+          <Image source={require('../assets/Images/d3.png')} />
+          <View>
+            <Text style={{fontSize: 18, fontWeight: 'bold'}}>Special Offers 😱</Text>
+            <Text style={styles.anysmall}>We make sure you get the {'\n'}offer you need at best prices</Text>
           </View>
         </View>
-      ))}
+
+        <ImageBackground 
+        source={require('../assets/Images/dg.png')} 
+        style={styles.image}
+      >
+         <View style={{flexDirection: 'row'}}>
+           <Image source={require('../assets/Images/d4.png')} />
+           <View>
+             <Text style={{fontSize: 18, fontWeight: 'bold'}}>Flat and Heels</Text>
+             <Text style={styles.anysmall}>Stand a chance to get rewarded</Text>
+           </View>
+         </View>
+
+      </ImageBackground>
+
+    
     </View>
   )
 }
 
-export default Off
+export default Off;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    
+    flexGrow:1,
+     overflow: 'hidden'
   
   },
   image: {
-    width:170,  // Adjust size as needed
-    height: 200, // Adjust size as needed
+   
+     resizeMode: 'contain', // Adjust size as needed
     
     borderRadius: 16,
     marginLeft: 9,
@@ -199,4 +236,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#FFD700', // Gold color for stars
   },
+  imagetext:{
+    fontSize: 12,
+    fontWeight: 'medium'
+  }, 
+  anysmall:{
+    fontSize: 12,
+    fontWeight: 'light'
+  },
+  specialflex:{
+    flexDirection: 'row',
+       alignContent: 'center',
+       justifyContent: 'space-between',
+       padding: 20
+  }
 })
