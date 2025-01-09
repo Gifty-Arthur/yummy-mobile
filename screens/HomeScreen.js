@@ -4,6 +4,7 @@ import { DrawerLayout } from 'react-native-gesture-handler';
 import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
 import Off from '../component/Off';
+import Carousell from '../component/Carousell';
 
 const HomeScreen = () => {
   const drawer = useRef(null);
@@ -67,6 +68,7 @@ const HomeScreen = () => {
             </View>
           </View>
           <Off />
+          <Carousell/>
         </View>
       </ScrollView>
     </DrawerLayout>

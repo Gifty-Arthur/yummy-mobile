@@ -72,7 +72,7 @@ const Off = () => {
             <View style={{
               flexDirection: 'row',
               paddingLeft: 7
-            }}>
+              }}>
               <Text style={{color: '#fff', marginTop: 3,padding: 2}}>Shop Now</Text>
               <FontAwesome name='arrow-right' color='#fff' size={16} style={{marginTop: 7, paddingLeft: 8}}/>
             </View>
@@ -166,22 +166,83 @@ const Off = () => {
             <Text style={styles.anysmall}>We make sure you get the {'\n'}offer you need at best prices</Text>
           </View>
         </View>
-
-        <ImageBackground 
-        source={require('../assets/Images/dg.png')} 
-        style={styles.image}
-      >
-         <View style={{flexDirection: 'row'}}>
-           <Image source={require('../assets/Images/d4.png')} />
-           <View>
-             <Text style={{fontSize: 18, fontWeight: 'bold'}}>Flat and Heels</Text>
-             <Text style={styles.anysmall}>Stand a chance to get rewarded</Text>
+<View style={{marginTop: 10}}>
+  
+          <ImageBackground
+          source={require('../assets/Images/dg.png')}
+          style={styles.image}
+        >
+           <View style={{flexDirection: 'row'}}>
+             <Image source={require('../assets/Images/d4.png')} />
+             <View>
+               <Text style={{fontSize: 18, fontWeight: 'bold'}}>Flat and Heels</Text>
+               <Text style={styles.anysmall}>Stand a chance to get rewarded</Text>
+               <View style={{
+                  flexDirection: 'row',
+                  paddingLeft: 7,
+                  backgroundColor: '#F83758',
+                  width: 102,
+                  height: 24,
+                  marginTop: 10
+                  }}>
+                  <Text style={{color: '#fff', marginTop: 3,padding: 2}}>Visit Now</Text>
+                  <FontAwesome name='arrow-right' color='#fff' size={16} style={{marginTop: 7, paddingLeft: 8}}/>
+                </View>
+             </View>
            </View>
-         </View>
+  
+        </ImageBackground>
+</View>
 
-      </ImageBackground>
+{/* trending Product
+ */}
 
-    
+<View style={{
+      width: '100%',
+      height: 60,
+      backgroundColor: '#FD6E87',
+      marginTop: 20,
+      marginLeft: 10,
+      borderRadius: 8
+      
+      
+        
+      }}>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 1
+        }}>
+          <View>
+          
+              <Text style={{color: '#fff', fontSize: 16, fontWeight: 'bold', marginLeft: 6, marginTop: 5}}>Trending Product</Text>
+              <Text style={{color: '#fff', fontSize: 12, marginTop: 10,marginLeft: 6 }}>Last Date 29/02/22</Text>
+          </View>
+          <TouchableOpacity>
+              <View style={{
+                width: 92,
+                height: 32,
+                borderRadius: 6,
+                borderWidth: 2,
+                borderColor: '#fff',
+                marginTop: 10,
+                marginRight: 19
+                
+              }}>
+              <View style={{
+                flexDirection: 'row',
+                paddingLeft: 7
+              }}>
+                <Text style={{color: '#fff', marginTop: 3,padding: 2}}>View All</Text>
+                <FontAwesome name='arrow-right' color='#fff' size={16} style={{marginTop: 7, paddingLeft: 8}}/>
+              </View>
+              </View>
+            </TouchableOpacity>
+        </View>
+      
+            
+          </View>
     </View>
   )
 }
