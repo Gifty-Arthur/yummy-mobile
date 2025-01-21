@@ -81,11 +81,7 @@ const Carousell = () => {
       </View>
 
       {/* new Arri */}
-      <View style={{
-        width: '100%'
-      }}>
-           <Image source={require('../assets/Images/n1.png')} />
-      </View>
+         
     </View>
     
   );
@@ -133,7 +129,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 10,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#F83758',
     borderRadius: 5,
   },
   buttonText: {

@@ -5,6 +5,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { TextInput } from 'react-native-gesture-handler';
 import Off from '../component/Off';
 import Carousell from '../component/Carousell';
+import Sponsered from '../component/Sponsered';
 
 const HomeScreen = () => {
   const drawer = useRef(null);
@@ -69,6 +70,7 @@ const HomeScreen = () => {
           </View>
           <Off />
           <Carousell/>
+          <Sponsered/>
         </View>
       </ScrollView>
     </DrawerLayout>
